@@ -1,13 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 
 import React, { useEffect } from "react";
-import { View, ActivityIndicator } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -35,11 +29,7 @@ import RootStackScreen from "./screens/RootStackScreen";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const Drawer = createDrawerNavigator();
-
-const App = () => {
-  // const [isLoading, setIsLoading] = React.useState(true);
-  // const [userToken, setUserToken] = React.useState(null);
-
+export default function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
   const initialLoginState = {
@@ -188,6 +178,13 @@ const App = () => {
       </AuthContext.Provider>
     </PaperProvider>
   );
-};
+}
 
-export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

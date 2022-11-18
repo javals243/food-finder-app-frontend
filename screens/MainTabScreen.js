@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import HomeScreen from './HomeScreen';
-import NotificationScreen from './NotificationScreen';
-import ExploreScreen from './ExploreScreen';
-import ProfileScreen from './ProfileScreen';
-import MapTestScreen from './MapTestScreen';
-import EditProfileScreen from './EditProfileScreen';
+import HomeScreen from "./HomeScreen";
+import NotificationScreen from "./NotificationScreen";
+import ExploreScreen from "./ExploreScreen";
+import ProfileScreen from "./ProfileScreen";
+import MapTestScreen from "./MapTestScreen";
+import EditProfileScreen from "./EditProfileScreen";
 
-import {useTheme, Avatar} from 'react-native-paper';
-import {View} from 'react-native-animatable';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import CardListScreen from './CardListScreen';
-import CardItemDetails from './CardItemDetails';
+import { useTheme, Avatar } from "react-native-paper";
+import { View } from "react-native-animatable";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import CardListScreen from "./CardListScreen";
+import CardItemDetails from "./CardItemDetails";
 
 const HomeStack = createStackNavigator();
 const NotificationStack = createStackNavigator();
@@ -31,9 +31,9 @@ const MainTabScreen = () => (
       name="Home"
       component={HomeStackScreen}
       options={{
-        tabBarLabel: 'Home',
-        tabBarColor: '#FF6347',
-        tabBarIcon: ({color}) => (
+        tabBarLabel: "Home",
+        tabBarColor: "#FF6347",
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-home" color={color} size={26} />
         ),
       }}
@@ -42,9 +42,9 @@ const MainTabScreen = () => (
       name="Notifications"
       component={NotificationStackScreen}
       options={{
-        tabBarLabel: 'Updates',
-        tabBarColor: '#1f65ff',
-        tabBarIcon: ({color}) => (
+        tabBarLabel: "Updates",
+        tabBarColor: "#1f65ff",
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-notifications" color={color} size={26} />
         ),
       }}
@@ -53,9 +53,9 @@ const MainTabScreen = () => (
       name="Profile"
       component={ProfileStackScreen}
       options={{
-        tabBarLabel: 'Profile',
-        tabBarColor: '#694fad',
-        tabBarIcon: ({color}) => (
+        tabBarLabel: "Profile",
+        tabBarColor: "#694fad",
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-person" color={color} size={26} />
         ),
       }}
@@ -64,9 +64,9 @@ const MainTabScreen = () => (
       name="Explore"
       component={ExploreScreen}
       options={{
-        tabBarLabel: 'Explore',
-        tabBarColor: '#d02860',
-        tabBarIcon: ({color}) => (
+        tabBarLabel: "Explore",
+        tabBarColor: "#d02860",
+        tabBarIcon: ({ color }) => (
           <Icon name="ios-aperture" color={color} size={26} />
         ),
       }}
@@ -76,8 +76,8 @@ const MainTabScreen = () => (
 
 export default MainTabScreen;
 
-const HomeStackScreen = ({navigation}) => {
-  const {colors} = useTheme();
+const HomeStackScreen = ({ navigation }) => {
+  const { colors } = useTheme();
   return (
     <HomeStack.Navigator
       screenOptions={{
@@ -88,16 +88,17 @@ const HomeStackScreen = ({navigation}) => {
         },
         headerTintColor: colors.text,
         headerTitleStyle: {
-          fontWeight: 'bold',
+          fontWeight: "bold",
         },
-      }}>
+      }}
+    >
       <HomeStack.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'FoodFinder',
+          title: "FoodFinder",
           headerLeft: () => (
-            <View style={{marginLeft: 10}}>
+            <View style={{ marginLeft: 10 }}>
               <Icon.Button
                 name="ios-menu"
                 size={25}
@@ -108,7 +109,7 @@ const HomeStackScreen = ({navigation}) => {
             </View>
           ),
           headerRight: () => (
-            <View style={{flexDirection: 'row', marginRight: 10}}>
+            <View style={{ flexDirection: "row", marginRight: 10 }}>
               <Icon.Button
                 name="ios-search"
                 size={25}
@@ -117,14 +118,14 @@ const HomeStackScreen = ({navigation}) => {
                 onPress={() => {}}
               />
               <TouchableOpacity
-                style={{paddingHorizontal: 10, marginTop: 5}}
+                style={{ paddingHorizontal: 10, marginTop: 5 }}
                 onPress={() => {
-                  navigation.navigate('Profile');
-                }}>
+                  navigation.navigate("Profile");
+                }}
+              >
                 <Avatar.Image
                   source={{
-                    uri:
-                      'https://api.adorable.io/avatars/80/abott@adorable.png',
+                    uri: "https://api.adorable.io/avatars/80/abott@adorable.png",
                   }}
                   size={30}
                 />
@@ -133,40 +134,41 @@ const HomeStackScreen = ({navigation}) => {
           ),
         }}
       />
-      <HomeStack.Screen 
+      <HomeStack.Screen
         name="CardListScreen"
         component={CardListScreen}
-        options={({route}) => ({
+        options={({ route }) => ({
           title: route.params.title,
-          headerBackTitleVisible: false
+          headerBackTitleVisible: false,
         })}
       />
-      <HomeStack.Screen 
+      <HomeStack.Screen
         name="CardItemDetails"
         component={CardItemDetails}
-        options={({route}) => ({
+        options={({ route }) => ({
           // title: route.params.title,
           headerBackTitleVisible: false,
           headerTitle: false,
           headerTransparent: true,
-          headerTintColor: '#fff'
+          headerTintColor: "#fff",
         })}
       />
     </HomeStack.Navigator>
   );
 };
 
-const NotificationStackScreen = ({navigation}) => (
+const NotificationStackScreen = ({ navigation }) => (
   <NotificationStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: '#1f65ff',
+        backgroundColor: "#1f65ff",
       },
-      headerTintColor: '#fff',
+      headerTintColor: "#fff",
       headerTitleStyle: {
-        fontWeight: 'bold',
+        fontWeight: "bold",
       },
-    }}>
+    }}
+  >
     <NotificationStack.Screen
       name="Notifications"
       component={NotificationScreen}
@@ -184,8 +186,8 @@ const NotificationStackScreen = ({navigation}) => (
   </NotificationStack.Navigator>
 );
 
-const ProfileStackScreen = ({navigation}) => {
-  const {colors} = useTheme();
+const ProfileStackScreen = ({ navigation }) => {
+  const { colors } = useTheme();
 
   return (
     <ProfileStack.Navigator
@@ -196,14 +198,15 @@ const ProfileStackScreen = ({navigation}) => {
           elevation: 0, // Android
         },
         headerTintColor: colors.text,
-      }}>
+      }}
+    >
       <ProfileStack.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
-          title: '',
+          title: "",
           headerLeft: () => (
-            <View style={{marginLeft: 10}}>
+            <View style={{ marginLeft: 10 }}>
               <Icon.Button
                 name="ios-menu"
                 size={25}
@@ -214,13 +217,13 @@ const ProfileStackScreen = ({navigation}) => {
             </View>
           ),
           headerRight: () => (
-            <View style={{marginRight: 10}}>
+            <View style={{ marginRight: 10 }}>
               <MaterialCommunityIcons.Button
                 name="account-edit"
                 size={25}
                 backgroundColor={colors.background}
                 color={colors.text}
-                onPress={() => navigation.navigate('EditProfile')}
+                onPress={() => navigation.navigate("EditProfile")}
               />
             </View>
           ),
@@ -229,7 +232,7 @@ const ProfileStackScreen = ({navigation}) => {
       <ProfileStack.Screen
         name="EditProfile"
         options={{
-          title: 'Edit Profile',
+          title: "Edit Profile",
         }}
         component={EditProfileScreen}
       />
