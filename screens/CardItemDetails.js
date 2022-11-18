@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef } from "react";
 import {
   View,
   Text,
@@ -7,19 +7,19 @@ import {
   Dimensions,
   StatusBar,
   Platform,
-} from 'react-native';
+} from "react-native";
 import HeaderImageScrollView, {
   TriggeringView,
-} from 'react-native-image-header-scroll-view';
+} from "react-native-image-header-scroll-view";
 
-import * as Animatable from 'react-native-animatable';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import * as Animatable from "react-native-animatable";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
+const MIN_HEIGHT = Platform.OS === "ios" ? 90 : 55;
 const MAX_HEIGHT = 350;
 
-const CardItemDetails = ({route}) => {
+const CardItemDetails = ({ route }) => {
   const itemData = route.params.itemData;
   const navTitleView = useRef(null);
 
@@ -43,16 +43,20 @@ const CardItemDetails = ({route}) => {
           <Animatable.View style={styles.navTitleView} ref={navTitleView}>
             <Text style={styles.navTitle}>{itemData.title}</Text>
           </Animatable.View>
-        )}>
+        )}
+      >
         <TriggeringView
           style={styles.section}
           onHide={() => navTitleView.current.fadeInUp(200)}
-          onDisplay={() => navTitleView.current.fadeOut(100)}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          onDisplay={() => navTitleView.current.fadeOut(100)}
+        >
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
             <Text style={styles.title}>Overview</Text>
-            <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+            <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
               <FontAwesome name="star" size={16} color="#FF6347" />
-              <Text style={{marginHorizontal: 2}}>{itemData.rating}</Text>
+              <Text style={{ marginHorizontal: 2 }}>{itemData.rating}</Text>
               <Text>({itemData.reviews})</Text>
             </View>
           </View>
@@ -72,19 +76,20 @@ const CardItemDetails = ({route}) => {
           </View>
         </View>
 
-        <View style={[styles.section, {height: 250}]}>
+        <View style={[styles.section, { height: 250 }]}>
           <MapView
             provider={PROVIDER_GOOGLE}
-            style={{flex: 1}}
+            style={{ flex: 1 }}
             region={{
               latitude: itemData.coordinate.latitude,
               longitude: itemData.coordinate.longitude,
               latitudeDelta: 0.00864195044303443,
               longitudeDelta: 0.000142817690068,
-            }}>
+            }}
+          >
             <MapView.Marker
               coordinate={itemData.coordinate}
-              image={require('../assets/map_marker.png')}
+              image={require("../assets/map_marker.png")}
             />
           </MapView>
         </View>
@@ -101,39 +106,39 @@ const styles = StyleSheet.create({
   },
   image: {
     height: MAX_HEIGHT,
-    width: Dimensions.get('window').width,
-    alignSelf: 'stretch',
-    resizeMode: 'cover',
+    width: Dimensions.get("window").width,
+    alignSelf: "stretch",
+    resizeMode: "cover",
   },
   title: {
     fontSize: 20,
   },
   name: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   section: {
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
-    backgroundColor: 'white',
+    borderBottomColor: "#cccccc",
+    backgroundColor: "white",
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   sectionContent: {
     fontSize: 16,
-    textAlign: 'justify',
+    textAlign: "justify",
   },
   categories: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    flexWrap: "wrap",
   },
   categoryContainer: {
-    flexDirection: 'row',
-    backgroundColor: '#FF6347',
+    flexDirection: "row",
+    backgroundColor: "#FF6347",
     borderRadius: 20,
     margin: 10,
     padding: 10,
@@ -141,31 +146,31 @@ const styles = StyleSheet.create({
   },
   category: {
     fontSize: 14,
-    color: '#fff',
+    color: "#fff",
     marginLeft: 10,
   },
   titleContainer: {
     flex: 1,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: "stretch",
+    justifyContent: "center",
+    alignItems: "center",
   },
   imageTitle: {
-    color: 'white',
-    backgroundColor: 'transparent',
+    color: "white",
+    backgroundColor: "transparent",
     fontSize: 24,
   },
   navTitleView: {
     height: MIN_HEIGHT,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: Platform.OS === 'ios' ? 40 : 5,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: Platform.OS === "ios" ? 40 : 5,
     opacity: 0,
   },
   navTitle: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
   },
   sectionLarge: {
     minHeight: 300,
