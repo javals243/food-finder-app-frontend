@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, ActivityIndicator, View } from "react-native";
 
 import React, { useEffect } from "react";
 import {
@@ -26,7 +26,7 @@ import { AuthContext } from "./components/context";
 
 import RootStackScreen from "./screens/RootStackScreen";
 
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Drawer = createDrawerNavigator();
 export default function App() {

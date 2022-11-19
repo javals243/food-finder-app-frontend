@@ -38,7 +38,7 @@ const MainTabScreen = () => (
         ),
       }}
     />
-    <Tab.Screen
+    {/* <Tab.Screen
       name="Notifications"
       component={NotificationStackScreen}
       options={{
@@ -70,7 +70,7 @@ const MainTabScreen = () => (
           <Icon name="ios-aperture" color={color} size={26} />
         ),
       }}
-    />
+    /> */}
   </Tab.Navigator>
 );
 
