@@ -10,7 +10,7 @@ import {
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-import Share from "react-native-share";
+// import Share from "react-native-share";
 
 import files from "../assets/filesBase64";
 
@@ -23,12 +23,12 @@ const ProfileScreen = () => {
       // urls: [files.image1, files.image2]
     };
 
-    try {
-      const ShareResponse = await Share.open(shareOptions);
-      console.log(JSON.stringify(ShareResponse));
-    } catch (error) {
-      console.log("Error => ", error);
-    }
+    // try {
+    //   const ShareResponse = await Share.open(shareOptions);
+    //   console.log(JSON.stringify(ShareResponse));
+    // } catch (error) {
+    //   console.log("Error => ", error);
+    // }
   };
 
   return (
@@ -125,7 +125,7 @@ const ProfileScreen = () => {
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="settings-outline" color="#FF6347" size={25} />
+            <Icon name="message-settings-outline" color="#FF6347" size={25} />
             <Text style={styles.menuItemText}>Settings</Text>
           </View>
         </TouchableRipple>

@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, ActivityIndicator, View } from "react-native";
-
 import React, { useEffect } from "react";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
@@ -17,18 +16,19 @@ import {
 
 import { DrawerContent } from "./screens/DrawerContent";
 
-import MainTabScreen from "./screens/MainTabScreen";
+import { AuthContext } from "./components/context";
+
+import RootStackScreen from "./screens/RootStackScreen";
+// import MainTabScreen from "./screens/MainTabScreen";
 import SupportScreen from "./screens/SupportScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import BookmarkScreen from "./screens/BookmarkScreen";
 
-import { AuthContext } from "./components/context";
-
-import RootStackScreen from "./screens/RootStackScreen";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MainTabScreen from "./screens/MainTabScreen";
 
 const Drawer = createDrawerNavigator();
+
 export default function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
 
@@ -150,7 +150,6 @@ export default function App() {
       dispatch({ type: "RETRIEVE_TOKEN", token: userToken });
     }, 1000);
   }, []);
-
   if (loginState.isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -159,24 +158,39 @@ export default function App() {
     );
   }
   return (
-    <PaperProvider theme={theme}>
-      <AuthContext.Provider value={authContext}>
-        <NavigationContainer theme={theme}>
-          {loginState.userToken !== null ? (
-            <Drawer.Navigator
-              drawerContent={(props) => <DrawerContent {...props} />}
-            >
-              <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
-              <Drawer.Screen name="SupportScreen" component={SupportScreen} />
-              <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
-              <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
-            </Drawer.Navigator>
-          ) : (
-            <RootStackScreen />
-          )}
-        </NavigationContainer>
-      </AuthContext.Provider>
-    </PaperProvider>
+    <>
+      <PaperProvider theme={theme}>
+        <AuthContext.Provider value={authContext}>
+          <NavigationContainer theme={theme}>
+            {loginState.userToken !== null ? (
+              <Drawer.Navigator
+                drawerContent={(props) => <DrawerContent {...props} />}
+              >
+                <Drawer.Screen
+                  name="HomeDrawer"
+                  component={MainTabScreen}
+                  options={{ headerShown: false }}
+                />
+                <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+                <Drawer.Screen
+                  name="SettingsScreen"
+                  component={SettingsScreen}
+                  options={{ headerShown: false }}
+                />
+                <Drawer.Screen
+                  name="BookmarkScreen"
+                  component={BookmarkScreen}
+                  options={{ headerShown: false }}
+                />
+              </Drawer.Navigator>
+            ) : (
+              <RootStackScreen />
+            )}
+          </NavigationContainer>
+        </AuthContext.Provider>
+      </PaperProvider>
+      <StatusBar barStyle="light-content" />
+    </>
   );
 }
 

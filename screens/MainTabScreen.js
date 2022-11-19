@@ -10,7 +10,6 @@ import HomeScreen from "./HomeScreen";
 import NotificationScreen from "./NotificationScreen";
 import ExploreScreen from "./ExploreScreen";
 import ProfileScreen from "./ProfileScreen";
-import MapTestScreen from "./MapTestScreen";
 import EditProfileScreen from "./EditProfileScreen";
 
 import { useTheme, Avatar } from "react-native-paper";
@@ -38,7 +37,7 @@ const MainTabScreen = () => (
         ),
       }}
     />
-    {/* <Tab.Screen
+    <Tab.Screen
       name="Notifications"
       component={NotificationStackScreen}
       options={{
@@ -70,7 +69,7 @@ const MainTabScreen = () => (
           <Icon name="ios-aperture" color={color} size={26} />
         ),
       }}
-    /> */}
+    />
   </Tab.Navigator>
 );
 

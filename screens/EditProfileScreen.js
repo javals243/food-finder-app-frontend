@@ -16,10 +16,12 @@ import Feather from "react-native-vector-icons/Feather";
 
 import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
-
-import ImagePicker from "react-native-image-crop-picker";
+import * as ImagePicker from "expo-image-picker";
 
 const EditProfileScreen = () => {
+  const [status, requestPermission] = ImagePicker.useCameraPermissions();
+  const [statusM, requestPermissionM] =
+    ImagePicker.useMediaLibraryPermissions();
   const [image, setImage] = useState(
     "https://api.adorable.io/avatars/80/abott@adorable.png"
   );
@@ -34,7 +36,7 @@ const EditProfileScreen = () => {
     }).then((image) => {
       console.log(image);
       setImage(image.path);
-      this.bs.current.snapTo(1);
+      bs.current.snapTo(1);
     });
   };
 
@@ -47,11 +49,11 @@ const EditProfileScreen = () => {
     }).then((image) => {
       console.log(image);
       setImage(image.path);
-      this.bs.current.snapTo(1);
+      bs.current.snapTo(1);
     });
   };
 
-  renderInner = () => (
+  const renderInner = () => (
     <View style={styles.panel}>
       <View style={{ alignItems: "center" }}>
         <Text style={styles.panelTitle}>Upload Photo</Text>
@@ -71,14 +73,14 @@ const EditProfileScreen = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.panelButton}
-        onPress={() => this.bs.current.snapTo(1)}
+        onPress={() => bs.current.snapTo(1)}
       >
         <Text style={styles.panelButtonTitle}>Cancel</Text>
       </TouchableOpacity>
     </View>
   );
 
-  renderHeader = () => (
+  const renderHeader = () => (
     <View style={styles.header}>
       <View style={styles.panelHeader}>
         <View style={styles.panelHandle} />
@@ -86,28 +88,28 @@ const EditProfileScreen = () => {
     </View>
   );
 
-  bs = React.createRef();
-  fall = new Animated.Value(1);
+  const bs = React.createRef();
+  const fall = new Animated.Value(1);
 
   return (
     <View style={styles.container}>
       <BottomSheet
-        ref={this.bs}
+        ref={bs}
         snapPoints={[330, 0]}
-        renderContent={this.renderInner}
-        renderHeader={this.renderHeader}
+        renderContent={renderInner}
+        renderHeader={renderHeader}
         initialSnap={1}
-        callbackNode={this.fall}
+        callbackNode={fall}
         enabledGestureInteraction={true}
       />
       <Animated.View
         style={{
           margin: 20,
-          opacity: Animated.add(0.1, Animated.multiply(this.fall, 1.0)),
+          opacity: Animated.add(0.1, Animated.multiply(fall, 1.0)),
         }}
       >
         <View style={{ alignItems: "center" }}>
-          <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
+          <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
             <View
               style={{
                 height: 100,

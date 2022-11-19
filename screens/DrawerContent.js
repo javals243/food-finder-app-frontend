@@ -86,7 +86,11 @@ export function DrawerContent(props) {
             />
             <DrawerItem
               icon={({ color, size }) => (
-                <Icon name="settings-outline" color={color} size={size} />
+                <Icon
+                  name="message-settings-outline"
+                  color={color}
+                  size={size}
+                />
               )}
               label="Settings"
               onPress={() => {
